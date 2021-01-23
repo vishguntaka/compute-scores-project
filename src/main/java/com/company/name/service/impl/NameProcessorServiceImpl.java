@@ -15,6 +15,7 @@ public class NameProcessorServiceImpl implements NameProcessorService {
 
         Collections.sort(nameList);
 
+        //create a name object list and capture individual name score and index after the sort
         return nameList.stream().map(nameStr -> new Name(nameStr, nameList.indexOf(nameStr)+1)).collect(Collectors.toList());
 
     }

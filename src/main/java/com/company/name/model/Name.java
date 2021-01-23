@@ -17,10 +17,12 @@ public class Name {
 
     public long calculateSum(String name) {
         name.chars().forEach(value -> {
+            //skip if value is empty
             if (value != ' ') {
 
                 int charIndex = alphabets.indexOf(value);
 
+                //check if the given value is uppercase
                 if (charIndex < 0) {
                     charIndex = alphabets.toUpperCase().indexOf(value);
                 }

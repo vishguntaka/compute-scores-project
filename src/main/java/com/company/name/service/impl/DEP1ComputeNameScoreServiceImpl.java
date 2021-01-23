@@ -21,10 +21,13 @@ public class DEP1ComputeNameScoreServiceImpl implements ComputeNameScoreService 
     }
 
     public long computeNameScore(String... args) throws Exception {
+        //read the file and get names as list
         List nameList = nameReaderService.getNames(args[0]);
 
+        //process names to produce corresponding name objects
         List<Name> list = nameProcessorService.processData(nameList);
 
+        //calculate total sum
         return list.stream().map(o -> o.getSum()).reduce(Long::sum).get();
 
     }

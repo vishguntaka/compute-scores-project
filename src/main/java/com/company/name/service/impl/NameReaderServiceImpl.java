@@ -15,6 +15,14 @@ public class NameReaderServiceImpl implements NameReaderService {
     @Autowired
     private ResourceLoader resourceLoader;
 
+    /**
+     *
+     * Read given file using Buffered reader
+     *
+     * @param file
+     * @return
+     * @throws IOException
+     */
     public List<String> getNames(String file) throws IOException {
         List namesList;
         StringBuilder result = new StringBuilder();

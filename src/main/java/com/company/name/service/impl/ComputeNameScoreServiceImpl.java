@@ -8,6 +8,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+
+/**
+ * Delegator service which will to route the request to the correct service based on department code.
+ */
 @Service("computeNameScoreServiceDelegator")
 public class ComputeNameScoreServiceImpl implements ComputeNameScoreService {
 

@@ -1,38 +1,33 @@
 package com.company.name.service.impl;
 
-import com.company.name.enums.Department;
 import com.company.name.service.ComputeNameScoreService;
-import org.junit.Before;
+import org.junit.Assert;
 import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Arrays;
+import javax.annotation.Resource;
 
-import static org.mockito.Mockito.*;
-
+@RunWith(SpringRunner.class)
+@ContextConfiguration(classes = {ComputeNameScoreServiceImpl.class,
+        DEP1ComputeNameScoreServiceImpl.class,
+        NameProcessorServiceImpl.class,
+        NameReaderServiceImpl.class})
 public class ComputeNameScoreServiceImplTest {
 
-    public static final String[] ARGS = {"C:\\Users\\names.txt.txt", "DEP1"};
+    public static final String[] ARGS = {"names.txt"};
 
-    private ComputeNameScoreServiceImpl classToTest;
 
-    @Mock
-    private ComputeNameScoreService computeNameScoreService;
+    @Resource(name = "computeNameScoreServiceDelegator")
+    private ComputeNameScoreService computeNameScoreServiceImpl;
 
-    @Before
-    public void setUp() throws Exception {
-        MockitoAnnotations.openMocks(this);
-
-        when(computeNameScoreService.getDepartmentId()).thenReturn(Department.DEP1.name());
-        classToTest = new ComputeNameScoreServiceImpl(Arrays.asList(computeNameScoreService));
-
-    }
 
     @Test
     public void computeNameScore() throws Exception {
-        classToTest.computeNameScore(ARGS);
+        long result = computeNameScoreServiceImpl.computeNameScore(ARGS);
 
-        verify(computeNameScoreService, times(1)).computeNameScore(ARGS);
+        Assert.assertEquals(871198282, result);
+
     }
 }

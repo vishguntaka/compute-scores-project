@@ -15,10 +15,10 @@ import java.util.List;
 public class NameReaderServiceImplTest {
 
     @Autowired
-    private NameReaderService classToTest;
+    private NameReaderService nameReaderService;
 
     @TestConfiguration
-    static class EmployeeServiceImplTestContextConfiguration {
+    static class NameReaderServiceTestContextConfiguration {
 
         @Bean
         public NameReaderService nameReaderService() {
@@ -28,6 +28,6 @@ public class NameReaderServiceImplTest {
 
     @Test
     public void getNames() throws IOException {
-        List<String> names = classToTest.getNames("/names.txt");
+        List<String> names = nameReaderService.getNames("/names.txt");
     }
 }
